@@ -76,84 +76,240 @@ if "page" not in st.session_state:
 
 
 st.markdown("""
-
 <style>
 
+/* =========================
+   BACKGROUND
+========================= */
 
-body{
+.stApp{
 
-background:#f8fafc;
+background:
+linear-gradient(
+90deg,
+#4F46E5,
+#7C3AED,
+#06B6D4
+);
 
 }
 
+
+/* =========================
+   NAVBAR / TOP AREA
+========================= */
+
+header{
+
+background:transparent;
+
+}
+
+
+/* =========================
+   HERO TITLE
+========================= */
 
 .hero{
 
-font-size:60px;
+font-size:64px;
+
 font-weight:900;
-background:linear-gradient(
+
+line-height:1.05;
+
+background:
+linear-gradient(
 90deg,
-#2563eb,
-#7c3aed
+#60A5FA,
+#8B5CF6
 );
 
 -webkit-background-clip:text;
+
 color:transparent;
 
-animation:slide 1.2s;
+animation:slide 1s;
 
 }
 
 
+/* =========================
+   SUBTITLE
+========================= */
 
 .subtitle{
 
-font-size:28px;
-color:#475569;
+font-size:24px;
+
+color:#D7E3F8;
+
+margin-top:15px;
+
+line-height:1.6;
 
 }
 
 
+/* =========================
+   QUOTE
+========================= */
 
 .quote{
 
-font-size:22px;
+font-size:20px;
+
+color:#8BC4FF;
+
 font-style:italic;
-color:#14b8a6;
+
+margin-top:20px;
 
 }
 
 
+/* =========================
+   GLASS CARDS
+========================= */
 
 .card{
-background:white;
-padding:25px;
-border-radius:20px;
+
+background:rgba(255,255,255,0.08);
+
+backdrop-filter:blur(18px);
+
+padding:30px;
+
+border-radius:22px;
+
+border:1px solid rgba(255,255,255,0.15);
 
 box-shadow:
-0 10px 25px rgba(0,0,0,0.12);
+0 15px 40px rgba(0,0,0,.30);
 
-transition:0.3s;
+transition:.35s;
 
-animation:fade 1s;
+animation:fade .8s;
 
 }
-
 
 
 .card:hover{
 
-transform:translateY(-8px);
+transform:translateY(-10px);
+
+box-shadow:
+0 20px 45px rgba(59,130,246,.35);
 
 }
 
 
+/* =========================
+   BUTTONS
+========================= */
+
+.stButton button{
+
+background:
+radial-gradient(circle at top right,#3B82F655 0%,transparent 30%),
+radial-gradient(circle at bottom left,#8B5CF644 0%,transparent 35%),
+linear-gradient(
+135deg,
+#050816 0%,
+#0A1028 35%,
+#111C44 100%
+);
+            
+color:white;
+
+border:none;
+
+padding:14px 34px;
+
+border-radius:14px;
+
+font-size:17px;
+
+font-weight:700;
+
+transition:.35s;
+
+}
+
+
+.stButton button:hover{
+
+transform:translateY(-3px);
+
+box-shadow:
+0 10px 25px rgba(59,130,246,.45);
+
+}
+
+
+/* =========================
+   METRICS
+========================= */
+
+[data-testid="metric-container"]{
+
+background:rgba(18,28,58,.65);
+
+border-radius:18px;
+
+padding:18px;
+
+border:1px solid rgba(255,255,255,.12);
+backdrop-filter:blur(20px);
+
+}
+
+
+/* =========================
+   TABLES
+========================= */
+
+[data-testid="stDataFrame"]{
+
+border-radius:18px;
+
+overflow:hidden;
+
+}
+
+
+/* =========================
+   HEADINGS
+========================= */
+
+h1,h2,h3{
+
+color:white;
+
+}
+
+
+/* =========================
+   NORMAL TEXT
+========================= */
+
+p, label, li{
+
+color:#E6EEF9;
+
+}
+
+
+/* =========================
+   ANIMATIONS
+========================= */
 
 @keyframes fade{
 
 from{
 
 opacity:0;
+
 transform:translateY(20px);
 
 }
@@ -161,12 +317,12 @@ transform:translateY(20px);
 to{
 
 opacity:1;
+
 transform:translateY(0);
 
 }
 
 }
-
 
 
 @keyframes slide{
@@ -175,41 +331,22 @@ from{
 
 opacity:0;
 
+transform:translateX(-40px);
+
 }
 
 to{
 
 opacity:1;
 
-}
+transform:translateX(0);
 
 }
 
-
-
-.stButton button{
-
-
-background:
-linear-gradient(
-90deg,
-#2563eb,
-#7c3aed
-);
-
-color:white;
-
-border-radius:12px;
-
-font-weight:bold;
-
 }
-
 
 </style>
-
-""",
-unsafe_allow_html=True)
+""", unsafe_allow_html=True)
 
 
 
@@ -221,112 +358,129 @@ unsafe_allow_html=True)
 
 def home():
 
+    col1, col2 = st.columns([1.15, 1], vertical_alignment="center")
+
+    with col1:
+
+        st.markdown(
+            """
+            <div class="subtitle">
+                AI Powered School Management Platform
+            </div>
+            """,
+            unsafe_allow_html=True,
+        )
+
+        st.markdown(
+            """
+            <div class="hero">
+                Transforming Schools<br>
+                with Artificial Intelligence
+            </div>
+            """,
+            unsafe_allow_html=True,
+        )
+
+        st.markdown(
+            """
+            <div style="
+                color:#DCE7FF;
+                font-size:20px;
+                line-height:1.8;
+                margin-top:18px;
+                margin-bottom:28px;
+            ">
+            EduOpt AI helps schools identify students who require
+            counselling, remedial classes, attendance intervention,
+            and extracurricular engagement while intelligently
+            optimizing limited school resources.
+            </div>
+            """,
+            unsafe_allow_html=True,
+        )
+
+        st.markdown(
+            """
+            <div class="quote">
+            "Every student deserves the right guidance at the right time."
+            </div>
+            """,
+            unsafe_allow_html=True,
+        )
+
+        st.markdown("<br>", unsafe_allow_html=True)
+
+        if st.button("🚀 Get Started", key="hero_btn"):
+            st.session_state.page = "🏫 School Management"
+            st.rerun()
+
+    with col2:
+
+        st.image(
+            "assets/home.png",
+            use_container_width=True,
+        )
+
+    st.markdown("<br><br>", unsafe_allow_html=True)
 
     st.markdown(
-        "<div class='hero'>🤖 EduOpt AI</div>",
-        unsafe_allow_html=True
+        """
+        <h2 style="
+            text-align:center;
+            color:white;
+            margin-bottom:30px;
+            font-weight:700;
+        ">
+        Why Choose EduOpt AI?
+        </h2>
+        """,
+        unsafe_allow_html=True,
     )
 
-
-    st.markdown(
-        "<div class='subtitle'>"
-        "AI Powered Student Support & School Optimization Platform"
-        "</div>",
-        unsafe_allow_html=True
-    )
-
-
-    st.markdown(
-        "<div class='quote'>"
-        "\"Every student deserves the right guidance at the right time.\""
-        "</div>",
-        unsafe_allow_html=True
-    )
-
-
-    st.write(
-    """
-EduOpt AI helps schools use Artificial Intelligence
-to understand students better.
-
-It identifies student requirements,
-optimizes school resources and supports teachers
-in making data-driven decisions.
-"""
-    )
-
-
-    if st.button("🚀 Get Started"):
-
-     st.session_state.page="🏫 School Management"
-
-     st.rerun()
-
-
-    st.divider()
-
-
-    st.subheader(
-        "✨ Why Choose EduOpt AI?"
-    )
-
-
-    c1,c2,c3=st.columns(3)
-
+    c1, c2, c3, c4 = st.columns(4)
 
     with c1:
-
         st.markdown(
-        """
-        <div class="card">
-
-        🤖
-
-        <h3>AI Prediction</h3>
-
-        Identify student needs automatically.
-
-        </div>
-        """,
-        unsafe_allow_html=True
+            """
+            <div class="card">
+            <h3>🤖 AI Prediction</h3>
+            <p>Identify students requiring counselling, remedial support and academic guidance.</p>
+            </div>
+            """,
+            unsafe_allow_html=True,
         )
-
-
 
     with c2:
-
         st.markdown(
-        """
-        <div class="card">
-
-        ⚙️
-
-        <h3>Smart Optimization</h3>
-
-        Manage school resources efficiently.
-
-        </div>
-        """,
-        unsafe_allow_html=True
+            """
+            <div class="card">
+            <h3>⚙️ Resource Optimization</h3>
+            <p>Allocate counselling, remedial and activity slots based on priority.</p>
+            </div>
+            """,
+            unsafe_allow_html=True,
         )
 
-
-
     with c3:
-
         st.markdown(
-        """
-        <div class="card">
+            """
+            <div class="card">
+            <h3>📊 Dashboard</h3>
+            <p>Monitor total students, recommendations and school-wide insights.</p>
+            </div>
+            """,
+            unsafe_allow_html=True,
+        )
 
-        📚
-
-        <h3>Student Growth</h3>
-
-        Personalised development plans.
-
-        </div>
-        """,
-        unsafe_allow_html=True
+    with c4:
+        st.markdown(
+            """
+            <div class="card">
+            <h3>📄 Reports</h3>
+            <p>Generate AI-powered reports and track weekly student progress.</p>
+            </div>
+            """,
+            unsafe_allow_html=True,
         )
 
 
@@ -336,94 +490,239 @@ in making data-driven decisions.
 
 def about():
 
+    col1, col2 = st.columns([1.15,1], vertical_alignment="center")
 
-    st.title(
-        "📖 About EduOpt AI"
-    )
+    with col1:
 
+        st.markdown("""
+        <div class="subtitle">
+        ABOUT EDUOPT AI
+        </div>
+        """, unsafe_allow_html=True)
 
-    st.subheader(
-        "Our Problem"
-    )
+        st.markdown("""
+        <div class="hero">
+        Smart Schools.<br>
+        Better Student Support.
+        </div>
+        """, unsafe_allow_html=True)
 
+        st.markdown("<br>", unsafe_allow_html=True)
 
-    st.write(
-    """
-Schools face challenges like:
+        st.markdown("""
+        <div class="card">
 
-• Identifying students needing support
+        <h3>🚨 Problem</h3>
 
-• Managing counselling and remedial requirements
+        <p style="font-size:18px;">
+        Schools often struggle to identify students who require
+        counselling, remedial classes, attendance monitoring or
+        extracurricular engagement. Due to limited staff and resources,
+        deserving students may not receive timely support.
+        </p>
 
-• Limited resources
+        <br>
 
-• Difficulty tracking progress
-"""
-    )
+        <h3>💡 Our Solution</h3>
 
+        <p style="font-size:18px;">
+        EduOpt AI uses Artificial Intelligence to analyse student data,
+        predict required interventions, and optimize the allocation of
+        counselling, remedial, sports and activity resources—helping every
+        student receive the right support at the right time.
+        </p>
 
-    st.subheader(
-        "Our Solution"
-    )
+        </div>
+        """, unsafe_allow_html=True)
 
+    with col2:
 
-    st.write(
-    """
-EduOpt AI provides:
+        st.image(
+            "assets/about.png",
+            use_container_width=True
+        )
 
-✓ AI based student analysis
+    st.markdown("<br><br>", unsafe_allow_html=True)
 
-✓ Personalised recommendations
+    st.markdown("""
+    <h2 style="text-align:center;color:white;">
+    Our Vision
+    </h2>
+    """, unsafe_allow_html=True)
 
-✓ Resource optimisation
+    st.markdown("""
+    <div class="card">
 
-✓ Progress monitoring
+    <p style="font-size:18px;text-align:center;">
 
-✓ Better school management
-"""
-    )
+    To build intelligent schools where Artificial Intelligence assists
+    educators in making faster, fairer and data-driven decisions,
+    ensuring every student receives personalized academic and emotional
+    support.
 
+    </p>
+
+    </div>
+    """, unsafe_allow_html=True)
+
+    st.markdown("<br>", unsafe_allow_html=True)
+
+    st.markdown("""
+    <h2 style="text-align:center;color:white;">
+    Our Mission
+    </h2>
+    """, unsafe_allow_html=True)
+
+    st.markdown("""
+    <div class="card">
+
+    <p style="font-size:18px;text-align:center;">
+
+    Empower schools with AI-powered prediction,
+    resource optimization and progress monitoring
+    to improve student well-being and academic success.
+
+    </p>
+
+    </div>
+    """, unsafe_allow_html=True)
 
 
 
 
 def features():
 
+    st.markdown("""
+    <div class="subtitle">
+    OUR FEATURES
+    </div>
+    """, unsafe_allow_html=True)
 
-    st.title(
-        "✨ EduOpt AI Features"
-    )
+    st.markdown("""
+    <div class="hero">
+    AI Features That Transform Schools
+    </div>
+    """, unsafe_allow_html=True)
 
+    st.markdown("<br>", unsafe_allow_html=True)
 
-    features=[
+    # ---------------- AI Prediction ---------------- #
 
-    "🤖 AI Student Prediction",
+    col1, col2 = st.columns([1.2,1])
 
-    "📚 Remedial Support",
+    with col1:
 
-    "💙 Counselling Management",
+        st.markdown("""
+        <div class="card">
 
-    "🕒 Attendance Monitoring",
+        <h2>🤖 AI Prediction</h2>
 
-    "🏆 Sports Engagement",
+        <p style="font-size:18px;line-height:1.8;">
 
-    "🎨 Creative Activities",
+        EduOpt AI intelligently analyses attendance,
+        academic performance, behaviour,
+        teacher feedback, counselling history and
+        learning difficulties to predict which students
+        require support.
 
-    "⚙️ Resource Optimization",
+        The AI recommends:
 
-    "📊 Dashboard",
+        ✅ Counselling
 
-    "📄 AI Reports",
+        ✅ Remedial Classes
 
-    "📅 Weekly Progress"
+        ✅ Academic Guidance
 
-    ]
+        ✅ Attendance Intervention
 
+        ✅ Sports / Activity Engagement
 
-    for item in features:
+        </p>
 
-        st.success(item)
+        </div>
+        """, unsafe_allow_html=True)
 
+    with col2:
+
+        st.image(
+            "assets/prediction.png",
+            use_container_width=True
+        )
+
+    st.markdown("<br><br>", unsafe_allow_html=True)
+
+    # ---------------- Resource Optimization ---------------- #
+
+    col3, col4 = st.columns([1.2,1])
+
+    with col3:
+
+        st.markdown("""
+        <div class="card">
+
+        <h2>⚙ Resource Optimization</h2>
+
+        <p style="font-size:18px;line-height:1.8;">
+
+        Schools often have fewer counselling,
+        remedial and activity slots than students.
+
+        EduOpt AI automatically prioritizes students
+        based on urgency and available resources.
+
+        It optimizes:
+
+        ✅ Counselling Slots
+
+        ✅ Remedial Slots
+
+        ✅ Sports Activities
+
+        ✅ Art Classes
+
+        ✅ Music Classes
+
+        ✅ Other School Resources
+
+        </p>
+
+        </div>
+        """, unsafe_allow_html=True)
+
+    with col4:
+
+        st.image(
+            "assets/optimization.png",
+            use_container_width=True
+        )
+
+    st.markdown("<br><br>", unsafe_allow_html=True)
+
+    st.markdown("""
+    <div class="card">
+
+    <h2 style="text-align:center;">
+    🌟 Why EduOpt AI?
+    </h2>
+
+    <p style="text-align:center;font-size:18px;">
+
+    ✔ AI Powered Predictions
+
+    ✔ Resource Optimization
+
+    ✔ Dashboard Analytics
+
+    ✔ Downloadable Reports
+
+    ✔ Weekly Student Progress
+
+    ✔ Secure School Login
+
+    </p>
+
+    </div>
+    """, unsafe_allow_html=True)
 
 
 
